@@ -9,7 +9,6 @@ services:
             - ./redis-data:/data
 
     backend:
-        image: vencord/backend
         build: .
         restart: always
         env_file:
