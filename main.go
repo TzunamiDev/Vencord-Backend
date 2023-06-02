@@ -142,6 +142,7 @@ func main() {
 
 	app.Use(cors.New(cors.Config{
 		ExposeHeaders: "ETag",
+        AllowOrigins: "https://discord.com,https://ptb.discord.com,https://canary.discord.com",
 	}))
 	app.Use(logger.New())
 
@@ -326,7 +327,7 @@ func main() {
 		userId := c.Context().UserValue("userId").(string)
 
 		rdb.Del(c.Context(), "settings:"+hash(PEPPER_SETTINGS+userId))
-		rdb.Del(c.Context(), "secret"+hash(PEPPER_SECRETS+userId))
+		rdb.Del(c.Context(), "secrets:"+hash(PEPPER_SECRETS+userId))
 
 		return c.SendStatus(204)
 	})
